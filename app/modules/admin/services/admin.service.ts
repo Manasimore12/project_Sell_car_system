@@ -18,6 +18,17 @@ export class AdminService {
           headers: this.createAuthorizationHeader()
       })
     }
+
+    getBids(): Observable<any>{
+      return this.http.get(BASE_URL+"api/admin/car/bids", {
+          headers: this.createAuthorizationHeader()
+      })
+    }
+      searchCar(searchDto: any): Observable<any>{
+          return this.http.post(BASE_URL+"api/admin/car/search",searchDto, {
+              headers: this.createAuthorizationHeader()
+          })
+        }
   
     createAuthorizationHeader(): HttpHeaders {
       let authHeaders: HttpHeaders = new HttpHeaders();

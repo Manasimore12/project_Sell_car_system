@@ -20,7 +20,7 @@ export class CustomerService {
     return this.http.get(BASE_URL+"api/customer/cars", {
         headers: this.createAuthorizationHeader()
     })
-  }
+}
 
   getMyCars(): Observable<any> {
   return this.http.get(BASE_URL+`api/customer/my-cars/${StorageService.getUserId()}`, {
@@ -28,7 +28,7 @@ export class CustomerService {
   });
 }
 
-deleteCar(id: number): Observable<any> {
+  deleteCar(id: number): Observable<any> {
   return this.http.delete(BASE_URL+`api/customer/car/${id}`, {
     headers: this.createAuthorizationHeader()
   });
@@ -39,6 +39,44 @@ deleteCar(id: number): Observable<any> {
   });
 }
 
+  updateCar(id: number, carDto:any): Observable<any> {
+    return this.http.put(BASE_URL+`api/customer/car/${id}`, carDto, {
+      headers: this.createAuthorizationHeader()
+  });
+}
+  bidACar(formData: any): Observable<any>{
+    return this.http.post(BASE_URL+"api/customer/car/bid",formData, {
+        headers: this.createAuthorizationHeader()
+    })
+  }
+
+  getMyBids(): Observable<any> {
+  return this.http.get(BASE_URL+`api/customer/car/bids/${StorageService.getUserId()}`, {
+    headers: this.createAuthorizationHeader()
+  });
+}
+    getBidsByCarId(carId:number): Observable<any> {
+  return this.http.get(BASE_URL+`api/customer/car/${carId}/bids`, {
+    headers: this.createAuthorizationHeader()
+  });
+}
+    updateBidStatus(bidId:number, status:string): Observable<any> {
+  return this.http.get(BASE_URL+`api/customer/car/bid/${bidId}/${status}`, {
+    headers: this.createAuthorizationHeader()
+  });
+}
+    getAnalytics(): Observable<any> {
+  return this.http.get(BASE_URL+`api/customer/car/analytics/${StorageService.getUserId()}`, {
+    headers: this.createAuthorizationHeader()
+  });
+}
+    searchCar(searchDto: any): Observable<any>{
+    return this.http.post(BASE_URL+"api/customer/car/search",searchDto, {
+        headers: this.createAuthorizationHeader()
+    })
+  }
+
+
   createAuthorizationHeader(): HttpHeaders {
     let authHeaders: HttpHeaders = new HttpHeaders();
     return authHeaders.set(
@@ -46,5 +84,7 @@ deleteCar(id: number): Observable<any> {
       'Bearer '+ StorageService.getToken()
     );
   }
+
+  
   
 }

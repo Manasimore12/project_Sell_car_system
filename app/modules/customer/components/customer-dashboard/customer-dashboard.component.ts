@@ -16,9 +16,11 @@ import { RouterModule } from '@angular/router';
 export class CustomerDashboardComponent {
 
   cars :any =[];
+  analytics :any;
   constructor(private service: CustomerService){ }
   ngOnInit(){
     this.getCars();
+    this.getAnalytics();
   }
   getCars(){
     this.service.getAllCars().subscribe((res)=> 
@@ -27,4 +29,16 @@ export class CustomerDashboardComponent {
        this.cars =res;
       })
   }
+
+      getAnalytics(){
+    this.service.getAnalytics().subscribe((res)=> 
+    {
+       console.log(res);
+       this.analytics =res;
+      })
+  }
+    gridStyle={
+      width:'50%',
+      textAlign:'center'
+    }
 }

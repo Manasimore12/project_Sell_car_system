@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { CustomerService } from '../../services/customer.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { SharedNgZorroModule } from '../../../../shared-ng-zorro.module';
-import { AdminService } from '../../services/admin.service';
 
 @Component({
   selector: 'app-search-car',
@@ -22,7 +22,7 @@ export class SearchCarComponent {
     isSpinning:boolean=false;
     cars:any[]=[];
 
-    constructor(private service:AdminService,
+    constructor(private service:CustomerService,
         private fb:FormBuilder, ){}
     
       ngOnInit(){
@@ -43,4 +43,5 @@ export class SearchCarComponent {
           this.cars=res;
         })
       }
+
 }

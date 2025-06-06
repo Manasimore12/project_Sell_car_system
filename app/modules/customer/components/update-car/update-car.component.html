@@ -3,16 +3,28 @@
         <div class="parent">
             <div class="child">
                 <div nz-row class="imgDiv">
-                    <h2 style="margin-left: 230px">Update Car</h2>
+                    <h2 style="margin-left: 130px">Update Car</h2>
                 </div>
                 <form nz-form [formGroup]="updateCarForm" (ngSubmit)="updateCar()">
                     <div nz-row>
-                        <div class="file-upload-container">
-                            <div *ngIf="existingImage" class="profile-badge">
-                                <img [src]="existingImage" alt="Existing Image" class="profile" />
+                       <div class="file-upload-container">
+                            <label class="file-upload-label">
+                                <span style="margin-left: 100px">Select a file</span>
+                                <input type="file" nz-button nzType="primary" accept="image/x-png,image/gif,image/jpeg"
+                                  (change)="onFileSelected($event)" />
+                            </label>
+                            <div *ngIf="imagePreview" class="image-preview">
+                                <div class ="circle-image">
+                                    <img [src] = "imagePreview" alt="Existing Image" class = "preview-image" />
+                                </div>
+                            </div>
+                            <div *ngIf="existingImage" class="image-preview">
+                                <div class="circle-image">
+                                <img [src]="existingImage" alt="Existing Image" class="preview-image" />
                             </div>
                         </div>
-                        <div nz-col nzSpan="24">
+                    </div>
+                    <div nz-col nzSpan="24">
                             <nz-form-item>
                                 <nz-form-control nzHasFeedback [nzXs]="24" nzErrorTip="This Input Is Required!">
                                     <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select a Brand Name" formControlName="brand">
@@ -21,7 +33,7 @@
                                     </nz-select>
                                 </nz-form-control>  
                             </nz-form-item>
-                        </div>
+                    </div>
                         <div nz-col nzSpan="24">
                             <nz-form-item>
                                 <nz-form-control nzHasFeedback [nzXs]="24" nzErrorTip="This Input Is Required!">

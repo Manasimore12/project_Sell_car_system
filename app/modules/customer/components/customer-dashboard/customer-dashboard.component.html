@@ -1,5 +1,17 @@
 <div style="background-color:#F8F8F8; min-height: 91vh;">
     <div style="padding-top: 10px;"></div>
+
+    <nz-card *ngIf="analytics" style="width: 50%; text-align: center; margin: auto;">
+        <div nz-card-grid [ngStyle]="gridStyle">
+        <h3>Total Posted Cars</h3>
+        <h1>{{analytics.totalCars}}</h1>
+        </div>
+        <div nz-card-grid [ngStyle]="gridStyle">
+            <h3>Total Sold Cars</h3>
+            <h1>{{analytics.soldCars}}</h1>
+        </div>
+    </nz-card>
+
     <div style="margin-top:10px;" class="child" *ngFor="let car of cars">
         <div nz-row>
             <div nz-col nzSpan="8">
@@ -16,6 +28,14 @@
                     <b>{{car.transmission}}</b> - Type : <b>{{car.type}}</b> - Year : <b>{{car.year | date: 'yyyy'}}</b>
                 </h5>
                 <hr>
+
+                <div style="float: right;">
+                    <button nzSize="small" *ngIf="!car.sold" nz-button nzType="primary"
+                        routerLink="/customer/car/{{car.id}}/book">Bid</button>
+                    <button nzSize="small" *ngIf="car.sold" nzDanger style="margin-left: 5px;" nz-button
+                        nzType="primary"><span nz-icon nzType="check-circle" nzTheme="outline"></span> Sold</button>
+
+                </div>
             </div>
 
         </div>  

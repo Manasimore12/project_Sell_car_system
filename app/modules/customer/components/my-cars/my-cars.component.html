@@ -17,6 +17,9 @@
                 </h5>
                 <hr>
                 <div style="float: right;">
+                    <button nzSize="small" *ngIf="car.sold" nzDanger style="margin-left: 10px;" nz-button
+                        nzType="primary"><span nz-icon nzType="check-circle" nzTheme="outline"></span> Sold</button>
+                    <button nzSize="small" nz-button nzType="primary" routerLink ="/customer/manage-bids/{{car.id}}" style="margin-right: 10px;">Manage Bids</button>
                     <button nzSize="small" nz-button nzType="primary" routerLink ="/customer/car/edit/{{car.id}}">Update</button>
                     <button nzSize="small" nz-button nzType="primary" nzDanger (click) ="deleteCar(car.id)" style="margin-left: 10px;">Delete</button>
                 </div>
